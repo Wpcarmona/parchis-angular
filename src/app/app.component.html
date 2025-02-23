@@ -1,13 +1,12 @@
 <h1>Tablero de parchis</h1>
 
-<div>
+<div style=" width: 100%; text-align: center; display: grid; place-items: center;">
   <h1>{{ title }}</h1>
   <p>Es el turno del jugador: {{ jugadores[jugadorActual].color }}</p>
   <app-dice (diceRolled)="lanzarDados($event[0], $event[1])"></app-dice> <!-- Escuchar el evento de los dados -->
   <p>Fichas en casilla grande: {{ jugadores[jugadorActual].fichasEnCasillaGrande }}</p>
   <p>Oportunidades restantes: {{ jugadores[jugadorActual].oportunidades }}</p>
   
-  <button (click)="pasarTurno()">Pasar turno</button>
 </div>
 
 
@@ -16,28 +15,28 @@
   <tr>
     <td class="amarillo" colspan="7" rowspan="7">
       <div class="fichas">
-        <div class="ficha ficha-amarilla"></div>
-        <div class="ficha ficha-amarilla"></div>
-        <div class="ficha ficha-amarilla"></div>
-        <div class="ficha ficha-amarilla"></div>
+        <div class="ficha ficha-amarilla" id="ficha-amarilla1"></div>
+        <div class="ficha ficha-amarilla" id="ficha-amarilla2"></div>
+        <div class="ficha ficha-amarilla" id="ficha-amarilla3"></div>
+        <div class="ficha ficha-amarilla" id="ficha-amarilla4"></div>
       </div>
     </td>
-    <td colspan="2"></td>
+    <td colspan="2"  id="casilla1"> </td>
     <td class="amarillo" colspan="2">-</td>
     <td colspan="2"></td>
     <td class="verde" colspan="7" rowspan="7">
       <div class="fichas">
-        <div class="ficha ficha-verde"></div>
-        <div class="ficha ficha-verde"></div>
-        <div class="ficha ficha-verde"></div>
-        <div class="ficha ficha-verde"></div>
+        <div class="ficha ficha-verde" id="ficha-verde1"></div>
+        <div class="ficha ficha-verde" id="ficha-verde2"></div>
+        <div class="ficha ficha-verde" id="ficha-verde3"></div>
+        <div class="ficha ficha-verde" id="ficha-verde4"></div>
       </div>
     </td>
   </tr>
 
   <!-- 2 -->
   <tr>
-    <td colspan="2"></td>
+    <td colspan="2" style="background-color: red;" id="casilla2"></td>
     <td class="amarillo" colspan="2">-</td>
     <td colspan="2"><div class="circulo">5</div></td>
   </tr>
@@ -161,10 +160,10 @@
   <tr>
     <td class="azul" colspan="7" rowspan="7">
       <div class="fichas">
-        <div class="ficha ficha-azul"></div>
-        <div class="ficha ficha-azul"></div>
-        <div class="ficha ficha-azul"></div>
-        <div class="ficha ficha-azul"></div>
+        <div class="ficha ficha-azul" id="ficha-azul1"></div>
+        <div class="ficha ficha-azul"  id="ficha-azul2"></div>
+        <div class="ficha ficha-azul" id="ficha-azul3"></div>
+        <div class="ficha ficha-azul" id="ficha-azul4"></div>
       </div>
     </td>
     <td colspan="2"></td>
@@ -172,10 +171,10 @@
     <td colspan="2"><div class="circulo">1</div></td>
     <td class="rojo" colspan="7" rowspan="7">
       <div class="fichas">
-        <div class="ficha ficha-rojo"></div>
-        <div class="ficha ficha-rojo"></div>
-        <div class="ficha ficha-rojo"></div>
-        <div class="ficha ficha-rojo"></div>
+        <div class="ficha ficha-rojo" id="ficha-rojo1"></div>
+        <div class="ficha ficha-rojo"  id="ficha-rojo2"></div>
+        <div class="ficha ficha-rojo" id="ficha-rojo3"></div>
+        <div class="ficha ficha-rojo" id="ficha-rojo4"></div>
       </div>
     </td>
   </tr>
