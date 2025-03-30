@@ -1,13 +1,12 @@
 <h1>Tablero de parchis</h1>
 
-<div>
+<div style=" width: 100%; text-align: center; display: grid; place-items: center;">
   <h1>{{ title }}</h1>
   <p>Es el turno del jugador: {{ jugadores[jugadorActual].color }}</p>
   <app-dice (diceRolled)="lanzarDados($event[0], $event[1])"></app-dice> <!-- Escuchar el evento de los dados -->
   <p>Fichas en casilla grande: {{ jugadores[jugadorActual].fichasEnCasillaGrande }}</p>
   <p>Oportunidades restantes: {{ jugadores[jugadorActual].oportunidades }}</p>
   
-  <button (click)="pasarTurno()">Pasar turno</button>
 </div>
 
 
@@ -15,204 +14,387 @@
   <!-- 1 -->
   <tr>
     <td class="amarillo" colspan="7" rowspan="7">
-      <div class="fichas">
-        <div class="ficha ficha-amarilla"></div>
-        <div class="ficha ficha-amarilla"></div>
-        <div class="ficha ficha-amarilla"></div>
-        <div class="ficha ficha-amarilla"></div>
+      <div class="fichas" id="fichaamarilla">
+        @if(jugadores[0].posicionficha1 == 'fichaamarilla'){
+          <div class="ficha ficha-amarilla" id="ficha-amarilla1"></div>
+          <div class="ficha ficha-amarilla" id="ficha-amarilla2"></div>
+          <div class="ficha ficha-amarilla" id="ficha-amarilla3"></div>
+          <div class="ficha ficha-amarilla" id="ficha-amarilla4"></div>
+        }
+        
       </div>
     </td>
-    <td colspan="2"></td>
-    <td class="amarillo" colspan="2">-</td>
-    <td colspan="2"></td>
+    <td colspan="2"  id="casilla1"> </td>
+    <td class="amarillo" colspan="2" id="casilla92">-</td>
+    <td colspan="2" id="casilla91"></td>
     <td class="verde" colspan="7" rowspan="7">
-      <div class="fichas">
-        <div class="ficha ficha-verde"></div>
-        <div class="ficha ficha-verde"></div>
-        <div class="ficha ficha-verde"></div>
-        <div class="ficha ficha-verde"></div>
+      <div class="fichas" id="fichaverde">
+        @if(jugadores[3].posicionficha1 == 'fichaverde'){
+          <div class="ficha ficha-verde" id="ficha-verde1"></div>
+          <div class="ficha ficha-verde" id="ficha-verde2"></div>
+          <div class="ficha ficha-verde" id="ficha-verde3"></div>
+          <div class="ficha ficha-verde" id="ficha-verde4"></div>
+        }
+       
       </div>
     </td>
   </tr>
 
   <!-- 2 -->
   <tr>
-    <td colspan="2"></td>
-    <td class="amarillo" colspan="2">-</td>
-    <td colspan="2"><div class="circulo">5</div></td>
+    <td colspan="2"  id="casilla2"></td>
+    <td class="amarillo" colspan="2" id="casilla93">-</td>
+    <td colspan="2" id="casilla90"><div class="circulo">5</div></td>
   </tr>
   <!-- 3 -->
   <tr>
-    <td colspan="2"><div class="circulo">?</div></td>
-    <td class="amarillo" colspan="2">-</td>
-    <td colspan="2"></td>
+    <td colspan="2" id="casilla3"><div class="circulo">?</div></td>
+    <td class="amarillo" colspan="2" id="casilla94">-</td>
+    <td colspan="2" id="casilla89"></td>
   </tr>
   <!-- 4 -->
   <tr>
-    <td colspan="2"></td>
-    <td class="amarillo" colspan="2">-</td>
-    <td colspan="2"><div class="circulo">4</div></td>
+    <td colspan="2" id="casilla4" ></td>
+    <td class="amarillo" colspan="2" id="casilla95" >-</td>
+    <td colspan="2" id="casilla88"><div class="circulo">4</div></td>
   </tr>
   <!-- 5 -->
   <tr>
-    <td class="amarillo" colspan="2">Salida</td>
-    <td class="amarillo" colspan="2">-</td>
-    <td colspan="2"></td>
+    <td class="amarillo" id="casilla5" colspan="2">
+      salida
+      @if (jugadores[0].posicionficha1 == 'casilla5') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla1"></div>
+      }
+      @if (jugadores[0].posicionficha2 == 'casilla5') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla2"></div>
+      }
+      @if (jugadores[0].posicionficha3 == 'casilla5') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla3"></div>
+      }
+      @if (jugadores[0].posicionficha4 == 'casilla5') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla4"></div>
+      }
+    </td>
+    <td class="amarillo" colspan="2" id="casilla96" >-</td>
+    <td colspan="2" id="casilla87"></td>
   </tr>
   <!-- 6 -->
   <tr>
-    <td colspan="2"></td>
-    <td class="amarillo" colspan="2">-</td>
-    <td colspan="2"><div class="circulo">3</div></td>
+    <td colspan="2" id="casilla6">
+      @if (jugadores[0].posicionficha1 == 'casilla6') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla1"></div>
+      }
+      @if (jugadores[0].posicionficha2 == 'casilla6') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla2"></div>
+      }
+      @if (jugadores[0].posicionficha3 == 'casilla6') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla3"></div>
+      }
+      @if (jugadores[0].posicionficha4 == 'casilla6') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla4"></div>
+      }
+    </td>
+    <td class="amarillo" colspan="2" id="casilla97">-</td>
+    <td colspan="2" id="casilla86"><div class="circulo">3</div></td>
   </tr>
   <!-- 7 -->
   <tr>
-    <td colspan="2"><div class="circulo">1</div></td>
-    <td class="amarillo" colspan="2">-</td>
-    <td colspan="2"></td>
+    <td colspan="2" id="casilla7"><div class="circulo">1</div></td>
+    <td class="amarillo" colspan="2" id="casilla98">-</td>
+    <td colspan="2" id="casilla85"></td>
   </tr>
   <!-- 8 -->
   <!-- Primera línea justo debajo de los grandes -->
   <tr>
-    <td rowspan="2"></td>
-    <td rowspan="2"><div class="circulo2">5</div></td>
-    <td rowspan="2"></td>
-    <td rowspan="2"><div class="circulo2">4</div></td>
-    <td rowspan="2"></td>
-    <td rowspan="2"><div class="circulo2">3</div></td>
-    <td rowspan="2"></td>
+    <td rowspan="2" id="casilla16">
+      @if (jugadores[0].posicionficha1 == 'casilla16') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla1"></div>
+      }
+      @if (jugadores[0].posicionficha2 == 'casilla16') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla2"></div>
+      }
+      @if (jugadores[0].posicionficha3 == 'casilla16') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla3"></div>
+      }
+      @if (jugadores[0].posicionficha4 == 'casilla16') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla4"></div>
+      }
+      @if (jugadores[3].posicionficha1 == 'casilla16') {
+        <div class="ficha ficha-verde" id="ficha-verde1"></div>
+      }
+      @if (jugadores[3].posicionficha2 == 'casilla16') {
+        <div class="ficha ficha-verde" id="ficha-verde2"></div>
+      }
+      @if (jugadores[3].posicionficha3 == 'casilla16') {
+        <div class="ficha ficha-verde" id="ficha-verde3"></div>
+      }
+      @if (jugadores[3].posicionficha4 == 'casilla16') {
+        <div class="ficha ficha-verde" id="ficha-verde4"></div>
+      }
+      @if (jugadores[1].posicionficha1 == 'casilla16') {
+        <div class="ficha ficha-azul" id="ficha-azul1"></div>
+      }
+      @if (jugadores[1].posicionficha2 == 'casilla16') {
+        <div class="ficha ficha-azul" id="ficha-azul2"></div>
+      }
+      @if (jugadores[1].posicionficha3 == 'casilla16') {
+        <div class="ficha ficha-azul" id="ficha-azul3"></div>
+      }
+      @if (jugadores[1].posicionficha4 == 'casilla16') {
+        <div class="ficha ficha-azul" id="ficha-azul4"></div>
+      }
+      @if (jugadores[2].posicionficha1 == 'casilla16') {
+        <div class="ficha ficha-rojo" id="ficha-rojo1"></div>
+      }
+      @if (jugadores[2].posicionficha2 == 'casilla16') {
+        <div class="ficha ficha-rojo" id="ficha-rojo2"></div>
+      }
+      @if (jugadores[2].posicionficha3 == 'casilla16') {
+        <div class="ficha ficha-rojo" id="ficha-rojo3"></div>
+      }
+      @if (jugadores[2].posicionficha4 == 'casilla16') {
+        <div class="ficha ficha-rojo" id="ficha-rojo4"></div>
+      }
+    </td>
+    <td rowspan="2" id="casilla15"><div class="circulo2">5</div></td>
+    <td rowspan="2" id="casilla14"></td>
+    <td rowspan="2" id="casilla13"><div class="circulo2">4</div></td>
+    <td rowspan="2" id="casilla12"></td>
+    <td rowspan="2" id="casilla11"><div class="circulo2">3</div></td>
+    <td rowspan="2"id="casilla10">
+      @if (jugadores[0].posicionficha1 == 'casilla10') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla1"></div>
+      }
+      @if (jugadores[0].posicionficha2 == 'casilla10') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla2"></div>
+      }
+      @if (jugadores[0].posicionficha3 == 'casilla10') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla3"></div>
+      }
+      @if (jugadores[0].posicionficha4 == 'casilla10') {
+        <div class="ficha ficha-amarilla" id="ficha-amarilla4"></div>
+      }
+      @if (jugadores[3].posicionficha1 == 'casilla10') {
+        <div class="ficha ficha-verde" id="ficha-verde1"></div>
+      }
+      @if (jugadores[3].posicionficha2 == 'casilla10') {
+        <div class="ficha ficha-verde" id="ficha-verde2"></div>
+      }
+      @if (jugadores[3].posicionficha3 == 'casilla10') {
+        <div class="ficha ficha-verde" id="ficha-verde3"></div>
+      }
+      @if (jugadores[3].posicionficha4 == 'casilla10') {
+        <div class="ficha ficha-verde" id="ficha-verde4"></div>
+      }
+      @if (jugadores[1].posicionficha1 == 'casilla10') {
+        <div class="ficha ficha-azul" id="ficha-azul1"></div>
+      }
+      @if (jugadores[1].posicionficha2 == 'casilla10') {
+        <div class="ficha ficha-azul" id="ficha-azul2"></div>
+      }
+      @if (jugadores[1].posicionficha3 == 'casilla10') {
+        <div class="ficha ficha-azul" id="ficha-azul3"></div>
+      }
+      @if (jugadores[1].posicionficha4 == 'casilla10') {
+        <div class="ficha ficha-azul" id="ficha-azul4"></div>
+      }
+      @if (jugadores[2].posicionficha1 == 'casilla10') {
+        <div class="ficha ficha-rojo" id="ficha-rojo1"></div>
+      }
+      @if (jugadores[2].posicionficha2 == 'casilla10') {
+        <div class="ficha ficha-rojo" id="ficha-rojo2"></div>
+      }
+      @if (jugadores[2].posicionficha3 == 'casilla10') {
+        <div class="ficha ficha-rojo" id="ficha-rojo3"></div>
+      }
+      @if (jugadores[2].posicionficha4 == 'casilla10') {
+        <div class="ficha ficha-rojo" id="ficha-rojo4"></div>
+      }
+
+    </td>
     <td id="vacio"></td>
-    <td></td>
-    <td>-</td>
-    <td>-</td>
-    <td><div class="circulo">2</div></td>
-    <td id="vacio"></td>
-    <td rowspan="2"><div class="circulo2">1</div></td>
-    <td rowspan="2"></td>
-    <td class="verde" rowspan="2"><div class="vertical">Salida</div></td>
-    <td rowspan="2"></td>
-    <td rowspan="2"><div class="circulo2">?</div></td>
-    <td rowspan="2"></td>
-    <td rowspan="2"></td>
+    <td id="casilla8"></td>
+    <td id="casilla100">-</td>
+    <td id="casilla99">-</td>
+    <td id="casilla84"><div class="circulo">2</div></td>
+    <td id="vacio" ></td>
+    <td rowspan="2" id="casilla82"><div class="circulo2">1</div></td>
+    <td rowspan="2" id="casilla81"></td>
+    <td class="verde" rowspan="2" id="casilla80">
+      <div class="vertical">
+        Salida
+        @if (jugadores[3].posicionficha1 == 'casilla80') {
+          <div class="ficha ficha-verde" id="ficha-verde1"></div>
+        }
+        @if (jugadores[3].posicionficha2 == 'casilla80') {
+          <div class="ficha ficha-verde" id="ficha-verde2"></div>
+        }
+        @if (jugadores[3].posicionficha3 == 'casilla80') {
+          <div class="ficha ficha-verde" id="ficha-verde3"></div>
+        }
+        @if (jugadores[3].posicionficha4 == 'casilla80') {
+          <div class="ficha ficha-verde" id="ficha-verde4"></div>
+        }
+      </div></td>
+    <td rowspan="2" id="casilla79"></td>
+    <td rowspan="2" id="casilla78"><div class="circulo2">?</div></td>
+    <td rowspan="2" id="casilla77"></td>
+    <td rowspan="2" id="casilla76"></td>
   </tr>
   <!-- 9 -->
   <tr>
-    <td><div class="circulo2">2</div></td>
+    <td id="casilla9"><div class="circulo2">2</div></td>
     <td colspan="4" rowspan="4">
       <img
         src="http://ilusionesopticas.org.es/wp-content/uploads/2015/10/movimiento-de-centro-hacia-afuera-400x400.jpg"
       />
     </td>
-    <td></td>
+    <td id="casilla83"></td>
   </tr>
   <!-- 10 -->
   <tr>
-    <td class="azul" rowspan="2">|</td>
-    <td class="azul" rowspan="2">|</td>
-    <td class="azul" rowspan="2">|</td>
-    <td class="azul" rowspan="2">|</td>
-    <td class="azul" rowspan="2">|</td>
-    <td class="azul" rowspan="2">|</td>
-    <td class="azul" rowspan="2">|</td>
-    <td>|</td>
-    <td>|</td>
-    <td class="verde" rowspan="2">|</td>
-    <td class="verde" rowspan="2">|</td>
-    <td class="verde" rowspan="2">|</td>
-    <td class="verde" rowspan="2">|</td>
-    <td class="verde" rowspan="2">|</td>
-    <td class="verde" rowspan="2">|</td>
-    <td class="verde" rowspan="2">|</td>
+    <td  id="casilla17" class="azul" rowspan="2">|</td>
+    <td  id="casilla18" class="azul" rowspan="2">|</td>
+    <td  id="casilla19"class="azul" rowspan="2">|</td>
+    <td  id="casilla20"class="azul" rowspan="2">|</td>
+    <td  id="casilla21"class="azul" rowspan="2">|</td>
+    <td  id="casilla22"class="azul" rowspan="2">|</td>
+    <td  id="casilla23"class="azul" rowspan="2">|</td>
+    <td  id="casilla24">|</td>
+    <td id="casilla75">|</td>
+    <td class="verde" rowspan="2" id="casilla73">|</td>
+    <td class="verde" rowspan="2" id="casilla72">|</td>
+    <td class="verde" rowspan="2" id="casilla71">|</td>
+    <td class="verde" rowspan="2" id="casilla70">|</td>
+    <td class="verde" rowspan="2" id="casilla69">|</td>
+    <td class="verde" rowspan="2" id="casilla68">|</td>
+    <td class="verde" rowspan="2" id="casilla67">|</td>
   </tr>
   <!-- 11 -->
   <tr>
-    <td>|</td>
-    <td>|</td>
+    <td id="casilla25">|</td>
+    <td id="casilla74">|</td>
   </tr>
   <!-- 12 -->
   <tr>
-    <td rowspan="2"></td>
-    <td rowspan="2"></td>
-    <td rowspan="2"><div class="circulo2">?</div></td>
-    <td rowspan="2"></td>
-    <td class="azul" rowspan="2"><div class="vertical">Salida</div></td>
-    <td rowspan="2"></td>
-    <td rowspan="2"><div class="circulo2">1</div></td>
-    <td></td>
-    <td><div class="circulo2">2</div></td>
-    <td rowspan="2"></td>
-    <td rowspan="2"><div class="circulo2">3</div></td>
-    <td rowspan="2"></td>
-    <td rowspan="2"><div class="circulo2">4</div></td>
-    <td rowspan="2"></td>
-    <td rowspan="2"><div class="circulo2">5</div></td>
-    <td rowspan="2"></td>
+    <td rowspan="2" id="casilla26"></td>
+    <td rowspan="2" id="casilla27"></td>
+    <td rowspan="2" id="casilla28"><div class="circulo2">?</div></td>
+    <td rowspan="2" id="casilla29"></td>
+    <td  id="casilla30" class="azul" rowspan="2">
+      <div class="vertical">
+        Salida
+
+        @if (jugadores[1].posicionficha1 == 'casilla30') {
+          <div class="ficha ficha-azul" id="ficha-azul1"></div>
+        }
+        @if (jugadores[1].posicionficha2 == 'casilla30') {
+          <div class="ficha ficha-azul" id="ficha-azul2"></div>
+        }
+        @if (jugadores[1].posicionficha3 == 'casilla30') {
+          <div class="ficha ficha-azul" id="ficha-azul3"></div>
+        }
+        @if (jugadores[1].posicionficha4 == 'casilla30') {
+          <div class="ficha ficha-azul" id="ficha-azul4"></div>
+        }
+    </div></td>
+    <td  id="casilla31" rowspan="2"></td>
+    <td  id="casilla32" rowspan="2"><div class="circulo2">1</div></td>
+    <td  id="casilla33"></td>
+    <td id="casilla59"><div class="circulo2">2</div></td>
+    <td rowspan="2" id="casilla60"></td>
+    <td rowspan="2" id="casilla61"><div class="circulo2">3</div></td>
+    <td rowspan="2" id="casilla62"></td>
+    <td rowspan="2" id="casilla63"><div class="circulo2">4</div></td>
+    <td rowspan="2" id="casilla64"></td>
+    <td rowspan="2" id="casilla65"><div class="circulo2">5</div></td>
+    <td rowspan="2" id="casilla66"></td>
   </tr>
   <!-- 13 -->
   <tr>
     <td id="vacio"></td>
-    <td><div class="circulo">2</div></td>
-    <td>-</td>
-    <td>-</td>
-    <td></td>
+    <td id="casilla34"><div class="circulo">2</div></td>
+    <td  id="casilla49">-</td>
+    <td  id="casilla50">-</td>
+    <td id="casilla58"></td>
     <td id="vacio"></td>
   </tr>
   <!-- 14 -->
   <tr>
     <td class="azul" colspan="7" rowspan="7">
-      <div class="fichas">
-        <div class="ficha ficha-azul"></div>
-        <div class="ficha ficha-azul"></div>
-        <div class="ficha ficha-azul"></div>
-        <div class="ficha ficha-azul"></div>
+      <div class="fichas" id="fichaazul">
+        @if(jugadores[1].posicionficha1 == 'fichaazul'){
+          <div class="ficha ficha-azul" id="ficha-azul1"></div>
+          <div class="ficha ficha-azul"  id="ficha-azul2"></div>
+          <div class="ficha ficha-azul" id="ficha-azul3"></div>
+          <div class="ficha ficha-azul" id="ficha-azul4"></div>
+        }
+        
       </div>
     </td>
-    <td colspan="2"></td>
-    <td class="rojo" colspan="2">-</td>
-    <td colspan="2"><div class="circulo">1</div></td>
+    <td colspan="2"  id="casilla35"></td>
+    <td class="rojo" colspan="2"  id="casilla48">-</td>
+    <td colspan="2" id="casilla57"><div class="circulo">1</div></td>
     <td class="rojo" colspan="7" rowspan="7">
-      <div class="fichas">
-        <div class="ficha ficha-rojo"></div>
-        <div class="ficha ficha-rojo"></div>
-        <div class="ficha ficha-rojo"></div>
-        <div class="ficha ficha-rojo"></div>
+      <div class="fichas" id="ficharojo">
+        @if(jugadores[2].posicionficha1 == 'ficharojo'){
+          <div class="ficha ficha-rojo" id="ficha-rojo1"></div>
+        <div class="ficha ficha-rojo"  id="ficha-rojo2"></div>
+        <div class="ficha ficha-rojo" id="ficha-rojo3"></div>
+        <div class="ficha ficha-rojo" id="ficha-rojo4"></div>
+        }
+        
       </div>
     </td>
   </tr>
   <!-- 15 -->
   <tr>
-    <td colspan="2"><div class="circulo">3</div></td>
-    <td class="rojo" colspan="2">-</td>
-    <td colspan="2"></td>
+    <td colspan="2" id="casilla36"><div class="circulo">3</div></td>
+    <td class="rojo" colspan="2" id="casilla47">-</td>
+    <td colspan="2" id="casilla56"></td>
   </tr>
   <!-- 16 -->
   <tr>
-    <td colspan="2"></td>
-    <td class="rojo" colspan="2">-</td>
-    <td class="rojo" colspan="2">Salida</td>
+    <td colspan="2" id="casilla37"></td>
+    <td class="rojo" colspan="2" id="casilla46">-</td>
+    <td class="rojo" colspan="2" id="casilla55">
+      Salida
+      @if (jugadores[2].posicionficha1 == 'casilla55') {
+        <div class="ficha ficha-rojo" id="ficha-rojo1"></div>
+      }
+      @if (jugadores[2].posicionficha2 == 'casilla55') {
+        <div class="ficha ficha-rojo" id="ficha-rojo2"></div>
+      }
+      @if (jugadores[2].posicionficha3 == 'casilla55') {
+        <div class="ficha ficha-rojo" id="ficha-rojo3"></div>
+      }
+      @if (jugadores[2].posicionficha4 == 'casilla55') {
+        <div class="ficha ficha-rojo" id="ficha-rojo4"></div>
+      }
+    </td>
   </tr>
   <!-- 17 -->
   <tr>
-    <td colspan="2"><div class="circulo">4</div></td>
-    <td class="rojo" colspan="2">-</td>
-    <td colspan="2"></td>
+    <td colspan="2" id="casilla38"><div class="circulo">4</div></td>
+    <td class="rojo" colspan="2" id="casilla45">-</td>
+    <td colspan="2" id="casilla54"></td>
   </tr>
   <!-- 18 -->
   <tr>
-    <td colspan="2"></td>
-    <td class="rojo" colspan="2">-</td>
-    <td colspan="2"><div class="circulo">?</div></td>
+    <td colspan="2" id="casilla39"></td>
+    <td class="rojo" colspan="2" id="casilla44">-</td>
+    <td colspan="2" id="casilla53"><div class="circulo">?</div></td>
   </tr>
   <!-- 19 -->
   <tr>
-    <td colspan="2"><div class="circulo">5</div></td>
-    <td class="rojo" colspan="2">-</td>
-    <td colspan="2"></td>
+    <td colspan="2" id="casilla40"><div class="circulo">5</div></td>
+    <td class="rojo" colspan="2" id="casilla43">-</td>
+    <td colspan="2" id="casilla52"></td>
   </tr>
   <!-- 20 -->
   <tr>
-    <td colspan="2"></td>
-    <td class="rojo" colspan="2">-</td>
-    <td colspan="2"></td>
+    <td colspan="2" id="casilla41"></td>
+    <td class="rojo" colspan="2" id="casilla42">-</td>
+    <td colspan="2" id="casilla51"></td>
   </tr>
 </table>

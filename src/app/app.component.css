@@ -100,3 +100,81 @@ body {
   .ficha-rojo{
     background-color: darkred;
   }
+
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .popup-content h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .popup-content label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    color: #666;
+  }
+  
+  .popup-content input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .popup-content button {
+    padding: 0.6rem 1.2rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .popup-content button:first-of-type {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .popup-content button:first-of-type:hover {
+    background-color: #45a049;
+  }
+  
+  .popup-content button:last-of-type {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .popup-content button:last-of-type:hover {
+    background-color: #e53935;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
