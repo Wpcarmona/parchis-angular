@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { DiceComponent } from "./components/dice/dice.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DiceComponent],
+  imports: [ DiceComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'parchis';
+  dados: number[] = [0, 0];       // Valores de los dados lanzados
+  fichaSeleccionada: string = ''; // ID de la ficha seleccionada (ej. 'ficha-amarilla1')
+  modoSeleccion: boolean = false; 
 
   fichaamarilla1: string = 'casilla6';
   fichaamarilla2: boolean = true;
@@ -34,7 +36,7 @@ export class AppComponent {
     { color: 'Amarillo', 
       fichasEnCasillaGrande: 4, 
       oportunidades: 3, 
-      salida: 'casilla5', 
+      salida: '5', 
       ficha1: 'ficha-amarilla1',
       ficha2: 'ficha-amarilla2',
       ficha3: 'ficha-amarilla3',
@@ -47,7 +49,7 @@ export class AppComponent {
     { color: 'azul', 
       fichasEnCasillaGrande: 4, 
       oportunidades: 3, 
-      salida: 'casilla30',
+      salida: '30',
       ficha1: 'ficha-azul1',
       ficha2: 'ficha-azul2',
       ficha3: 'ficha-azul3',
@@ -60,7 +62,7 @@ export class AppComponent {
     { color: 'rojo', 
       fichasEnCasillaGrande: 4, 
       oportunidades: 3, 
-      salida: 'casilla55',
+      salida: '55',
       ficha1: 'ficha-rojo1',
       ficha2: 'ficha-rojo2',
       ficha3: 'ficha-rojo3',
@@ -73,7 +75,7 @@ export class AppComponent {
     { color: 'verde', 
       fichasEnCasillaGrande: 4, 
       oportunidades: 3, 
-      salida: 'casilla80',
+      salida: '80',
       ficha1: 'ficha-verde1',
       ficha2: 'ficha-verde2',
       ficha3: 'ficha-verde3',
@@ -115,6 +117,43 @@ export class AppComponent {
       this.pasarTurno();
     }
   }
+
+  seleccionarFicha(fichaId: string) {
+    if (this.modoSeleccion) {
+      this.fichaSeleccionada = fichaId;
+    }
+  }
+
+  moverFicha(casillaId: string) {
+    if (!this.modoSeleccion || !this.fichaSeleccionada) return;
+
+    // Mover la ficha seleccionada según el dado actual (primer o segundo)
+    const dadoUsado = this.dados[0] !== 0 ? 0 : 1; // Usar el primer dado primero
+    const pasos = this.dados[dadoUsado];
+
+    // Lógica para mover la ficha a la casilla destino (ej. casilla10)
+    this.actualizarPosicionFicha(this.fichaSeleccionada, casillaId);
+
+    // Resetear el dado usado y verificar si quedan movimientos
+    this.dados[dadoUsado] = 0;
+    if (this.dados.every(d => d === 0)) {
+      this.modoSeleccion = false; // Terminar turno
+    }
+  }
+
+  moviendoFicha( dado:number, posicionFicha:String){
+    const posicionActual = parseInt(posicionFicha.split('-')[1]);
+    const nuevaPosicion = posicionActual + dado;
+    return `${nuevaPosicion}`;
+  }
+
+  private actualizarPosicionFicha(fichaId: string, nuevaCasilla: string) {
+    // Actualizar la posición de la ficha en el array de jugadores
+    const jugador = this.jugadores[this.jugadorActual];
+    const fichaIndex = parseInt(fichaId.split('-amarilla')[1]); // Ejemplo para amarillas
+    // jugador[`posicionficha${fichaIndex}`] = nuevaCasilla;
+  }
+
 
   // Método para mover todas las fichas del jugador a su casilla de salida
   moverFichasASalida(jugador: any) { 
