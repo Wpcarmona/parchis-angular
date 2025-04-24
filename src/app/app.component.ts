@@ -38,6 +38,7 @@ export class AppComponent {
       ficha1: 'ficha-amarilla1',
       posicionficha1: 'fichaamarilla',
       isFree: false,
+      extraRoll: false,
     },
     {
       color: 'azul',
@@ -47,6 +48,7 @@ export class AppComponent {
       ficha1: 'ficha-azul1',
       posicionficha1: 'fichaazul',
       isFree: false,
+      extraRoll: false,
     },
     {
       color: 'rojo',
@@ -56,6 +58,7 @@ export class AppComponent {
       ficha1: 'ficha-rojo1',
       posicionficha1: 'ficharojo',
       isFree: false,
+      extraRoll: false,
     },
     {
       color: 'verde',
@@ -65,6 +68,7 @@ export class AppComponent {
       ficha1: 'ficha-verde1',
       posicionficha1: 'fichaverde',
       isFree: false,
+      extraRoll: false,
     },
   ];
 
@@ -72,33 +76,46 @@ export class AppComponent {
 
   // Método para lanzar los dados
   lanzarDados(dado1: number, dado2: number) {
-    const jugador = this.jugadores[this.jugadorActual];
+    const jug = this.jugadores[this.jugadorActual];
+    const total = dado1 + dado2;
+    const isDouble = dado1 === dado2;
 
-    if (jugador.oportunidades === 0) {
-      console.log(
-        `El jugador ${jugador.color} ya no tiene oportunidades. Pasando turno...`
-      );
-      this.pasarTurno();
-      return;
-    }
+    let keepTurn = false;
 
-    if (jugador.isFree) {
-      this.moverjugador(jugador, dado1 + dado2);
-    } else if (dado1 === dado2) {
-      if (jugador.fichasEnCasillaGrande > 0) {
-        console.log(jugador);
-        this.moverFichasASalida(jugador, dado1 + dado2);
+    if (!jug.isFree) {
+      // --- ESTÁ EN CÁRCEL ---
+      if (isDouble) {
+        // Sale de la cárcel
+        this.moverFichasASalida(jug, total);
+        jug.isFree = true;
+        keepTurn = true; // dobles siempre conservan turno
+      } else {
+        // Falló la oportunidad
+        jug.oportunidades--;
+        console.log(
+          `${jug.color} no sacó doble. Le quedan ${jug.oportunidades} intentos.`
+        );
+        if (jug.oportunidades > 0) {
+          keepTurn = true; // aún puede intentar de nuevo
+        } else {
+          keepTurn = false; // sin oportunidades, pierde turno
+          // Restauramos sus 3 oportunidades para el próximo turno
+          jug.oportunidades = 3;
+        }
       }
-      // Aquí podríamos dar al jugador otra oportunidad si es necesario según las reglas.
     } else {
-      jugador.oportunidades--; // Resta una oportunidad
-      console.log(
-        `No sacaste un doble. Te quedan ${jugador.oportunidades} oportunidades.`
-      );
+      // --- YA ESTÁ LIBRE ---
+      if (isDouble) {
+        this.moverjugador(jug, total);
+        keepTurn = true; // dobles conservan turno
+      } else {
+        this.moverjugador(jug, total);
+        keepTurn = false; // no doble, pierde turno
+      }
     }
 
-    // Si ya no tiene oportunidades, cambia de turno automáticamente
-    if (jugador.oportunidades === 0) {
+    // Al final, si no toca mantener turno, lo pasamos
+    if (!keepTurn) {
       this.pasarTurno();
     }
   }
@@ -160,8 +177,8 @@ export class AppComponent {
         nuevaPosicion <= 25
       ) {
         nuevaPosicion += 9;
-      } 
-      
+      }
+
       const coloresEspeciales2 = ['amarillo', 'azul', 'verde'];
       if (
         coloresEspeciales2.includes(jugador.color.toLowerCase()) &&
@@ -169,7 +186,7 @@ export class AppComponent {
         nuevaPosicion <= 50
       ) {
         nuevaPosicion += 9;
-      } 
+      }
 
       const coloresEspeciales3 = ['amarillo', 'azul', 'rojo'];
       if (
@@ -178,7 +195,7 @@ export class AppComponent {
         nuevaPosicion <= 75
       ) {
         nuevaPosicion += 9;
-      } 
+      }
 
       const coloresEspeciales4 = ['verde', 'azul', 'rojo'];
       if (
@@ -186,9 +203,8 @@ export class AppComponent {
         nuevaPosicion >= 92 &&
         nuevaPosicion <= 100
       ) {
-        nuevaPosicion == 1;
-      } 
-
+        nuevaPosicion = nuevaPosicion - 91;
+      }
 
       const nuevaPosicionId = nuevaPosicion.toString();
 
@@ -225,13 +241,9 @@ export class AppComponent {
   // Método para pasar al siguiente jugador
   pasarTurno() {
     this.jugadorActual = (this.jugadorActual + 1) % this.jugadores.length;
-
-    // Reiniciar las oportunidades del nuevo jugador
-    this.jugadores[this.jugadorActual].oportunidades = 3;
-
-    console.log(
-      `Es el turno del jugador ${this.jugadores[this.jugadorActual].color}`
-    );
+    const siguiente = this.jugadores[this.jugadorActual];
+    siguiente.oportunidades = 3;
+    console.log(`Es el turno del jugador ${siguiente.color}`);
   }
 
   openPreguntas(casilla: string, daddo: number) {
@@ -241,15 +253,60 @@ export class AppComponent {
         this.correctAnswer = 'C';
         this.preguntadado = daddo; // Guardar el valor del dado lanzado
         break;
+      case '32':
+        this.modal1 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo; // Guardar el valor del dado lanzado
+        break;
+      case '57':
+        this.modal1 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo; // Guardar el valor del dado lanzado
+        break;
+      case '82':
+        this.modal1 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo; // Guardar el valor del dado lanzado
+        break;
       case '9':
         this.modal2 = true;
         this.correctAnswer = 'C';
-        this.preguntadado = daddo; 
+        this.preguntadado = daddo;
+        break;
+      case '34':
+        this.modal2 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo;
+        break;
+      case '59':
+        this.modal2 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo;
+        break;
+      case '84':
+        this.modal2 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo;
         break;
       case '11':
         this.modal3 = true;
         this.correctAnswer = 'C';
-        this.preguntadado = daddo; 
+        this.preguntadado = daddo;
+        break;
+      case '36':
+        this.modal3 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo;
+        break;
+      case '61':
+        this.modal3 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo;
+        break;
+      case '86':
+        this.modal3 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo;
         break;
     }
   }
