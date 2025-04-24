@@ -20,15 +20,15 @@ export class DiceComponent {
 
     // Inicia la animación (cambia los números rápido)
     this.intervalId = setInterval(() => {
-      this.dice1 = Math.floor(Math.random() * 0) + 1;
-      this.dice2 = Math.floor(Math.random() * 0) + 1;
+      this.dice1 = Math.floor(Math.random() * 6) + 1;
+      this.dice2 = Math.floor(Math.random() * 6) + 1;
     }, 100); // Cambia cada 100ms
 
     // Detiene la animación después de 1 segundo y asigna los valores reales
     setTimeout(() => {
       clearInterval(this.intervalId);
-      this.dice1 = Math.floor(Math.random() * 0) + 1;
-      this.dice2 = Math.floor(Math.random() * 0) + 1;
+      this.dice1 = Math.floor(Math.random() * 6) + 1;
+      this.dice2 = Math.floor(Math.random() * 6) + 1;
       this.rolling = false;
 
       // Emitir los valores de los dados cuando la animación termine

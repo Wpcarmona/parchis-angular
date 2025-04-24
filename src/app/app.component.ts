@@ -160,7 +160,35 @@ export class AppComponent {
         nuevaPosicion <= 25
       ) {
         nuevaPosicion += 9;
-      }
+      } 
+      
+      const coloresEspeciales2 = ['amarillo', 'azul', 'verde'];
+      if (
+        coloresEspeciales2.includes(jugador.color.toLowerCase()) &&
+        nuevaPosicion >= 42 &&
+        nuevaPosicion <= 50
+      ) {
+        nuevaPosicion += 9;
+      } 
+
+      const coloresEspeciales3 = ['amarillo', 'azul', 'rojo'];
+      if (
+        coloresEspeciales3.includes(jugador.color.toLowerCase()) &&
+        nuevaPosicion >= 67 &&
+        nuevaPosicion <= 75
+      ) {
+        nuevaPosicion += 9;
+      } 
+
+      const coloresEspeciales4 = ['verde', 'azul', 'rojo'];
+      if (
+        coloresEspeciales4.includes(jugador.color.toLowerCase()) &&
+        nuevaPosicion >= 92 &&
+        nuevaPosicion <= 100
+      ) {
+        nuevaPosicion == 1;
+      } 
+
 
       const nuevaPosicionId = nuevaPosicion.toString();
 
