@@ -20,12 +20,13 @@ export class AppComponent {
   fichaazul1: boolean = true;
   fichaverde1: boolean = true;
   ficharoja1: boolean = true;
+  preguntadado: number = 0; // Dado lanzado
   modal1: boolean = false; // Modal para preguntas
   modal2: boolean = false; // Modal para preguntas
   modal3: boolean = false; // Modal para preguntas
   correctAnswer: string = ''; // Respuesta correcta para la pregunta
   positive: boolean = false; // Para mostrar el mensaje de respuesta correcta
-  negative : boolean = false; // Para mostrar el mensaje de respuesta incorrecta
+  negative: boolean = false; // Para mostrar el mensaje de respuesta incorrecta
   closeeButton: boolean = false; // Para cerrar el modal
   // Lista de jugadores con sus fichas y oportunidades
   jugadores = [
@@ -134,7 +135,7 @@ export class AppComponent {
         const nuevaPosicion = parseInt(jugador.salida) + total;
         const nuevaPosicionId = nuevaPosicion.toString();
         // Actualizar la posición de cada ficha al nombre de la casilla de salida
-        this.openPreguntas(nuevaPosicionId, total); 
+        this.openPreguntas(nuevaPosicionId, total);
         jugador[`posicionficha${index + 1}`] = nuevaPosicionId;
       });
       console.log('Estado actualizado del jugador:', jugador);
@@ -209,13 +210,18 @@ export class AppComponent {
     switch (casilla) {
       case '7':
         this.modal1 = true;
-        this.correctAnswer = 'C'
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo; // Guardar el valor del dado lanzado
         break;
       case '9':
         this.modal2 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo; 
         break;
       case '11':
         this.modal3 = true;
+        this.correctAnswer = 'C';
+        this.preguntadado = daddo; 
         break;
     }
   }
@@ -223,13 +229,13 @@ export class AppComponent {
   validarRespuesta() {
     if (this.respuestaSeleccionada) {
       console.log('Respuesta seleccionada:', this.respuestaSeleccionada);
-      if(this.respuestaSeleccionada === this.correctAnswer) {
+      if (this.respuestaSeleccionada === this.correctAnswer) {
         console.log('Respuesta correcta!');
         this.positive = true; // Mostrar mensaje de respuesta correcta
         this.respuestaSeleccionada = ''; // Limpiar la respuesta seleccionada
         this.closeeButton = true;
         this.correctAnswer = ''; // Mostrar botón de cerrar modal
-      }else{
+      } else {
         this.negative = true; // Mostrar mensaje de respuesta incorrecta
         this.closeeButton = true;
         this.respuestaSeleccionada = ''; // Limpiar la respuesta seleccionada

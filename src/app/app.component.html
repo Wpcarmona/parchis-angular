@@ -1351,3 +1351,137 @@
 </div>
 
 }
+@if(modal2){
+  <div class="overlay">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div>
+        <img
+          src="assets/ask-2.jpeg"
+          alt="Pregunta 1"
+          style="width: 500px; height: 300px"
+        />
+      </div>
+  
+      <form #quizForm="ngForm">
+        <div class="options">
+          <label>
+            <input
+              type="radio"
+              name="respuesta"
+              [(ngModel)]="respuestaSeleccionada"
+              value="A"
+            />
+            A
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="respuesta"
+              [(ngModel)]="respuestaSeleccionada"
+              value="B"
+            />
+            B
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="respuesta"
+              [(ngModel)]="respuestaSeleccionada"
+              value="C"
+            />
+            C
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="respuesta"
+              [(ngModel)]="respuestaSeleccionada"
+              value="D"
+            />
+            D
+          </label>
+        </div>
+  
+        <button type="button" (click)="validarRespuesta()">
+          Validar respuesta
+        </button>
+      </form>
+      @if(positive){
+        <p style="color: green; size: 40px; text-align: center;">Respuesta correcta!</p>
+      }@else if (negative) {
+        <p style="color: red; size: 40px; text-align: center;">Respuesta incorrecta!</p>
+      }
+      @if(closeeButton){
+        <button class="close-btn" (click)="closeModal()">✖</button>
+      }
+    </div>
+  </div>
+  
+  }
+  @if(modal3){
+    <div class="overlay">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <div>
+          <img
+            src="assets/ask-3.jpeg"
+            alt="Pregunta 1"
+            style="width: 500px; height: 300px"
+          />
+        </div>
+    
+        <form #quizForm="ngForm">
+          <div class="options">
+            <label>
+              <input
+                type="radio"
+                name="respuesta"
+                [(ngModel)]="respuestaSeleccionada"
+                value="A"
+              />
+              A
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="respuesta"
+                [(ngModel)]="respuestaSeleccionada"
+                value="B"
+              />
+              B
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="respuesta"
+                [(ngModel)]="respuestaSeleccionada"
+                value="C"
+              />
+              C
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="respuesta"
+                [(ngModel)]="respuestaSeleccionada"
+                value="D"
+              />
+              D
+            </label>
+          </div>
+    
+          <button type="button" (click)="validarRespuesta()">
+            Validar respuesta
+          </button>
+        </form>
+        @if(positive){
+          <p style="color: green; size: 40px; text-align: center;">Respuesta correcta!</p>
+        }@else if (negative) {
+          <p style="color: red; size: 40px; text-align: center;">Respuesta incorrecta!</p>
+        }
+        @if(closeeButton){
+          <button class="close-btn" (click)="closeModal()">✖</button>
+        }
+      </div>
+    </div>
+    
+    }
